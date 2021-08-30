@@ -2,9 +2,8 @@ package com.arifin.placesearhing.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.MutableLiveData
+import com.arifin.placesearhing.BuildConfig
 import com.arifin.placesearhing.databinding.ActivityMainBinding
 import com.arifin.placesearhing.model.nearbyplaces.Result
 import com.arifin.placesearhing.viewModel.NearByPlacesViewModel
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var radius:String = "500"
     private var types:String = "food"
     private var name:String = "harbour"
-    private val apiKey:String = "AIzaSyD-6jw2k_pORWpp5INUtcWn9uiKYVWRm5Y"
+    private val apiKey:String = BuildConfig.API_KEY
     private lateinit var list: List<Result>
     private var isUpdated:Boolean =false
 
@@ -29,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
+        viewModel.getNearByPlaces(location,radius,types,name,apiKey).observe(this) { response ->
+            if (response.status == "OK") {
+                list= response.results
+                setValues(list)
+            }
+        }
         viewModel.getNearByPlaces(location,radius,types,name,apiKey).observe(this) { response ->
             if (response.status == "OK") {
                 list= response.results

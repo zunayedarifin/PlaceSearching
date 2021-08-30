@@ -1,5 +1,6 @@
 package com.arifin.placesearhing.network
 
+import com.arifin.placesearhing.model.getaddress.GetAddress
 import com.arifin.placesearhing.model.nearbyplaces.NearByPlace
 import retrofit2.Call
 import retrofit2.http.GET
@@ -10,7 +11,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @Headers("Accept: application/json")
-    @GET("nearbysearch/json?")
+    @GET("place/nearbysearch/json?")
     fun getNearByPlace(
         @Query("location") location: String?,
         @Query("radius") radius: String?,
@@ -18,4 +19,11 @@ interface ApiService {
         @Query("name") name: String?,
         @Query("key") key: String?
     ): Call<NearByPlace>
+
+    @Headers("Accept: application/json")
+    @GET("geocode/json?")
+    fun getAddress(
+        @Query("address") address: String?,
+        @Query("key") key: String?
+    ): Call<GetAddress>
 }
