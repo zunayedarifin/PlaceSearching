@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlaceSearching">
         <activity
+            android:name=".view.ResultDetailsActivity"
+            android:theme="@style/AppThemeLight.NoActionBar"
+            android:exported="true" />
+        <activity
             android:name=".view.SearchListActivity"
             android:exported="true"
-            android:theme="@style/AppThemeLight.NoActionBar"/>
+            android:theme="@style/AppThemeLight.NoActionBar" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true"
