@@ -16,18 +16,25 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode.*
 import java.util.*
+import android.text.Editable
+import android.text.TextWatcher
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: NearByPlacesViewModel by viewModels()
-    private var location:String = "-33.8670522,151.1957362"
-    private var radius:String = "500"
-    private var types:String = "food"
-    private var name:String = "harbour"
+    private lateinit var  location:String
+    private lateinit var  radius:String
+    private lateinit var  types:String
+    private lateinit var  name:String
     private val apiKey:String = BuildConfig.API_KEY
     private lateinit var list: List<Result>
     private var isUpdated:Boolean =false
+    private var isValidInput:Boolean =false
+    private lateinit var latlon:String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,28 +53,60 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        viewModel.getNearByPlaces(location,radius,types,name,apiKey).observe(this) { response ->
-            if (response.status == "OK") {
-                list= response.results
-                setValues(list)
-            }
-        }
-        viewModel.getNearByPlaces(location,radius,types,name,apiKey).observe(this) { response ->
-            if (response.status == "OK") {
-                list= response.results
-                setValues(list)
-            }
-        }
-        viewModel.getIsUpdate().observe(this){
-            isUpdated=it
+        textWatcher()
+
+        binding.imageViewBtn.setOnClickListener {
+            val intent = Intent(this, SearchListActivity::class.java)
+            intent.putExtra("location", latlon)
+            intent.putExtra("radius", binding.etRadius.text.toString())
+            intent.putExtra("types", "food")
+            intent.putExtra("name", binding.etSearch.text.toString())
+            startActivity(intent)
         }
 
+    }
+
+    private fun textWatcher() {
+        binding.etAddress.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(str: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(str: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(str: Editable) {
+                changeButtonColor()
+            }
+        })
+        binding.etRadius.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(str: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(str: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(str: Editable) {
+                changeButtonColor()
+            }
+        })
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(str: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(str: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(str: Editable) {
+                changeButtonColor()
+            }
+        })
+    }
+
+    private fun changeButtonColor() {
+        if (binding.etAddress.text.toString().trim { it <= ' ' }.isNotEmpty()
+            && binding.etRadius.text.toString().trim { it <= ' ' }.isNotEmpty()
+            && binding.etSearch.text.toString().trim { it <= ' ' }.isNotEmpty()) {
+            binding.imageViewBtn.setImageDrawable(getDrawable(R.drawable.ic_go_green))
+            isValidInput=true
+        } else {
+            binding.imageViewBtn.setImageDrawable(getDrawable(R.drawable.ic_go_orange))
+            isValidInput=false
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
             val place = Autocomplete.getPlaceFromIntent(data!!)
-            binding.etAddress.setText(place.latLng.toString())
+            latlon=place.latLng?.latitude.toString()+","+place.latLng?.longitude.toString()
+            binding.etAddress.setText(place.name)
 
         } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             Autocomplete.getStatusFromIntent(data!!)
@@ -76,8 +115,4 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun setValues(list: List<Result>) {
-        R.style.noActionBar
-        //binding.helloWorld.text= list[0].business_status +" \n"+ list[0].name+" \n"+ list[0].opening_hours
-    }
 }
