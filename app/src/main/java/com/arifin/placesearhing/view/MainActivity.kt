@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.arifin.placesearhing.BuildConfig
+import com.arifin.placesearhing.R
 import com.arifin.placesearhing.databinding.ActivityMainBinding
 import com.arifin.placesearhing.model.nearbyplaces.Result
 import com.arifin.placesearhing.viewModel.NearByPlacesViewModel
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setValues(list: List<Result>) {
-        binding.helloWorld.text= list[0].business_status +" \n"+ list[0].name+" \n"+ list[0].opening_hours
+        R.style.noActionBar
+        //binding.helloWorld.text= list[0].business_status +" \n"+ list[0].name+" \n"+ list[0].opening_hours
     }
 }
