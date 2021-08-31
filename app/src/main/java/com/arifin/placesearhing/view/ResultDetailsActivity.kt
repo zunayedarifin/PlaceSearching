@@ -15,17 +15,14 @@ class ResultDetailsActivity : AppCompatActivity() {
         binding = ActivityResultDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val name: String = intent.getStringExtra("name")!!
-        val type: String = intent.getStringExtra("type")!!
-        val status: String = intent.getStringExtra("status")!!
-        val ratings: String = intent.getStringExtra("name")!!
+        val data: Result = intent.getParcelableExtra("data")!!
 
-        binding.name.text = "Place name: "+ name
-        binding.type.text = "Place type: "+type
-        binding.status.text= "Status: " +status
-        binding.ratings.text ="Status: " +ratings
-//        if (data.opening_hours.open_now) binding.open.text = "The place is open now"
-//        else binding.open.text = "The place is not open now"
+        binding.name.text = "Place name: "+ data.name
+        binding.type.text = "Place type: "+data.types.toString()
+        binding.status.text= "Status: " +data.business_status
+        binding.ratings.text ="Ratings: " +data.rating.toString()+"(${data.user_ratings_total})"
+       if (data.opening_hours?.open_now == true) binding.open.text = "The place is open now"
+       else binding.open.text = "The place is not open now"
 
 
         binding.ivBack.setOnClickListener{

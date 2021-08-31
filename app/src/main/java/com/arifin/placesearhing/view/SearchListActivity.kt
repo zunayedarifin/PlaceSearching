@@ -56,17 +56,14 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
 
     private fun setValues(list: ArrayList<Result>) {
         binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = SearchListAdapter(list,this)
-        binding.searchResultRecyclerView.adapter = adapter
+        searchListAdapter = SearchListAdapter(list,this)
+        binding.searchResultRecyclerView.adapter = searchListAdapter
 
     }
 
     override fun onCellClickListener(data: Result) {
-        val intent = Intent(this, SearchListActivity::class.java)
-        intent.putExtra("name", data.name)
-        intent.putExtra("type", data.types.toString())
-        intent.putExtra("status", data.business_status)
-        intent.putExtra("ratings", data.rating.toString()+"("+data.user_ratings_total+")")
+        val intent = Intent(this, ResultDetailsActivity::class.java)
+        intent.putExtra("data",data)
         startActivity(intent)
     }
 
