@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arifin.placesearhing.BuildConfig
+import com.arifin.placesearhing.R
 import com.arifin.placesearhing.`interface`.CellClickListener
 import com.arifin.placesearhing.adapter.SearchListAdapter
 import com.arifin.placesearhing.databinding.ActivitySearchListBinding
@@ -22,7 +23,7 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
     private val viewModel: NearByPlacesViewModel by viewModels()
     lateinit var location: String
     lateinit var radius: String
-    lateinit var types: String
+    // lateinit var types: String
     lateinit var name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +33,16 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
 
         location = intent.getStringExtra("location")!!
         radius = intent.getStringExtra("radius")!!
-        types = intent.getStringExtra("types")!!
+        // types = intent.getStringExtra("types")!!
         name = intent.getStringExtra("name")!!
 
         viewModel.getNearByPlaces(location,radius,/*types,*/name,apiKey).observe(this) { response ->
             if (response.status == "OK") {
                 list= response.results as ArrayList<Result>
                 setValues(list)
+                binding.ivNoData.visibility = View.GONE
+            }else if(response.status == "ZERO_RESULTS"){
+                binding.ivNoData.visibility = View.VISIBLE
             }
         }
         viewModel.getIsUpdate().observe(this){

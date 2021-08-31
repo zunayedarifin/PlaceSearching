@@ -2,37 +2,24 @@ package com.arifin.placesearhing.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.arifin.placesearhing.BuildConfig
 import com.arifin.placesearhing.R
 import com.arifin.placesearhing.databinding.ActivityMainBinding
-import com.arifin.placesearhing.model.nearbyplaces.Result
-import com.arifin.placesearhing.viewModel.NearByPlacesViewModel
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode.*
 import java.util.*
-import android.text.Editable
-import android.text.TextWatcher
-
-
-
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: NearByPlacesViewModel by viewModels()
-    private lateinit var  location:String
-    private lateinit var  radius:String
-    private lateinit var  types:String
-    private lateinit var  name:String
     private val apiKey:String = BuildConfig.API_KEY
-    private lateinit var list: List<Result>
-    private var isUpdated:Boolean =false
     private var isValidInput:Boolean =false
     private lateinit var latlon:String
 
@@ -55,12 +42,17 @@ class MainActivity : AppCompatActivity() {
         textWatcher()
 
         binding.imageViewBtn.setOnClickListener {
-            val intent = Intent(this, SearchListActivity::class.java)
-            intent.putExtra("location", latlon)
-            intent.putExtra("radius", binding.etRadius.text.toString())
-            intent.putExtra("types", "food")
-            intent.putExtra("name", binding.etSearch.text.toString())
-            startActivity(intent)
+            if(isValidInput){
+                val intent = Intent(this, SearchListActivity::class.java)
+                intent.putExtra("location", latlon)
+                intent.putExtra("radius", binding.etRadius.text.toString())
+                // intent.putExtra("types", "food")
+                intent.putExtra("name", binding.etSearch.text.toString())
+                startActivity(intent)
+            }else{
+                Toast.makeText(applicationContext,"Input all the fields",Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }
@@ -90,14 +82,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeButtonColor() {
-        if (binding.etAddress.text.toString().trim { it <= ' ' }.isNotEmpty()
+        isValidInput = if (binding.etAddress.text.toString().trim { it <= ' ' }.isNotEmpty()
             && binding.etRadius.text.toString().trim { it <= ' ' }.isNotEmpty()
             && binding.etSearch.text.toString().trim { it <= ' ' }.isNotEmpty()) {
             binding.imageViewBtn.setImageDrawable(getDrawable(R.drawable.ic_go_green))
-            isValidInput=true
+            true
         } else {
             binding.imageViewBtn.setImageDrawable(getDrawable(R.drawable.ic_go_orange))
-            isValidInput=false
+            false
         }
     }
 
