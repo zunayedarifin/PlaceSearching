@@ -17,7 +17,7 @@ import com.arifin.placesearhing.viewModel.NearByPlacesViewModel
 
 class SearchListActivity : AppCompatActivity(), CellClickListener {
     private lateinit var binding: ActivitySearchListBinding
-    private val apiKey:String = BuildConfig.API_KEY
+    private val apiKey: String = BuildConfig.API_KEY
     private lateinit var list: ArrayList<Result>
     private var searchListAdapter: SearchListAdapter? = null
     private val viewModel: NearByPlacesViewModel by viewModels()
@@ -35,20 +35,20 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
         radius = intent.getStringExtra("radius")!!
         name = intent.getStringExtra("name")!!
 
-        viewModel.getNearByPlaces(location,radius,name,apiKey).observe(this) { response ->
+        viewModel.getNearByPlaces(location, radius, name, apiKey).observe(this) { response ->
             if (response.status == getString(string.ok)) {
-                list= response.results as ArrayList<Result>
+                list = response.results as ArrayList<Result>
                 setValues(list) // setting values in list
                 binding.ivNoData.visibility = View.GONE
-            }else if(response.status == getString(string.zero_results)){
+            } else if (response.status == getString(string.zero_results)) {
                 binding.ivNoData.visibility = View.VISIBLE
             }
         }
-        viewModel.getIsUpdate().observe(this){ // for progressbar loading
-            if(it) binding.progressBar.visibility= View.GONE
-            else binding.progressBar.visibility= View.VISIBLE
+        viewModel.getIsUpdate().observe(this) { // for progressbar loading
+            if (it) binding.progressBar.visibility = View.GONE
+            else binding.progressBar.visibility = View.VISIBLE
         }
-        binding.ivBack.setOnClickListener{ // for going to previous activity
+        binding.ivBack.setOnClickListener { // for going to previous activity
             onBackPressed()
         }
 
@@ -56,14 +56,14 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
 
     private fun setValues(list: ArrayList<Result>) {
         binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(this)
-        searchListAdapter = SearchListAdapter(applicationContext,list,this)
+        searchListAdapter = SearchListAdapter(applicationContext, list, this)
         binding.searchResultRecyclerView.adapter = searchListAdapter
 
     }
 
     override fun onCellClickListener(data: Result) {
         val intent = Intent(this, ResultDetailsActivity::class.java)
-        intent.putExtra("data",data)  // sending clicked data through intent
+        intent.putExtra("data", data)  // sending clicked data through intent
         startActivity(intent)
     }
 

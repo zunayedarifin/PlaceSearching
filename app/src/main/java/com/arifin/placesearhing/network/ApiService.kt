@@ -14,7 +14,6 @@ interface ApiService {
     fun getNearByPlace(
         @Query("location") location: String?,
         @Query("radius") radius: String?,
-        // @Query("types") types: String?,
         @Query("name") name: String?,
         @Query("key") key: String?
     ): Call<NearByPlace>
