@@ -22,9 +22,9 @@ class SearchListAdapter(
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-     var mContext: Context = applicationContext
+    var mContext: Context = applicationContext
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) { // view initialization
         val name: TextView = view.findViewById(R.id.tvName)
         val address: TextView = view.findViewById(R.id.tvAddress)
         val open: TextView = view.findViewById(R.id.tvOpen)
@@ -38,19 +38,19 @@ class SearchListAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
+        // setting value for each item
         viewHolder.name.text = dataSet[position].name
         viewHolder.address.text = dataSet[position].vicinity
-        if(dataSet[position].opening_hours?.open_now == true){
+        if (dataSet[position].opening_hours?.open_now == true) {
             viewHolder.open.text = mContext.getString(R.string.open)
             with(viewHolder) { open.setTextColor(Color.GREEN) }
-        }else{
+        } else {
             viewHolder.open.text = mContext.getString(R.string.closed)
             with(viewHolder) { open.setTextColor(Color.RED) }
         }
 
 
-        viewHolder.itemView.setOnClickListener {
+        viewHolder.itemView.setOnClickListener {  // sending value to activity
             cellClickListener.onCellClickListener(dataSet[position])
         }
     }

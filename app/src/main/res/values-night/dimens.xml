@@ -29,4 +29,5 @@
   <dimen name="layout_margin_big_5">100dp</dimen>
   <dimen name="layout_margin_big_6">110dp</dimen>
   <dimen name="layout_margin_big_7">120dp</dimen>
+  <dimen name="layout_margin_big_8">200dp</dimen>
 </resources>

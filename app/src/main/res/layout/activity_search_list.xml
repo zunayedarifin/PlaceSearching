@@ -74,6 +74,18 @@
             android:indeterminate = "true"
             android:visibility="visible" />
 
+        <ImageView
+            android:id="@+id/ivNoData"
+            android:layout_width="@dimen/layout_margin_big_8"
+            android:layout_height="@dimen/layout_margin_big_8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@mipmap/ic_no_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminate ="true"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/search_result"
             android:layout_width="match_parent"

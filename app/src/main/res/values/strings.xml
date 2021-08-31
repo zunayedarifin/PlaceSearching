@@ -7,4 +7,14 @@
   <string name="search_result">Search Result</string>
   <string name="open">OPEN</string>
   <string name="closed">CLOSED</string>
+  <string name="input_all_the_fields">Input all the fields</string>
+  <string name="something_went_wrong">Something went wrong </string>
+  <string name="place_name">Place name: </string>
+  <string name="place_type">Place type: </string>
+  <string name="status">Status: </string>
+  <string name="ratings">Ratings: </string>
+  <string name="the_place_is_not_open_now">The place is not open now</string>
+  <string name="place_is_open_now">The place is open now</string>
+  <string name="ok">OK</string>
+  <string name="zero_results">ZERO_RESULTS</string>
 </resources>
