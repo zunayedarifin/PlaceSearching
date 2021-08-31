@@ -1,0 +1,43 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llRootView"
+    android:layout_margin="@dimen/layout_margin_small_6"
+    android:padding="@dimen/layout_margin_small_6"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/gray"
+    android:background="@drawable/body_white_round"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/medium_text_1"
+        android:textStyle="bold"
+        tools:text="Zunayed Arifin"
+        />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_1"
+        tools:text="Dhaka Bangladesh"
+        />
+
+    <TextView
+        android:id="@+id/tvOpen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_1"
+        tools:text="Open"
+        />
+</LinearLayout>

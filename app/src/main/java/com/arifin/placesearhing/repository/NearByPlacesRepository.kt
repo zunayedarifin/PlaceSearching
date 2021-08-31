@@ -14,29 +14,35 @@ class NearByPlacesRepository {
         return isUpdated
     }
 
-    fun placeList(location:String,radius:String,types:String,name:String,key:String): MutableLiveData<NearByPlace>
-         {
-            val nearByPlaceList: MutableLiveData<NearByPlace> = MutableLiveData<NearByPlace>()
-             isUpdated.value = false
-            val apiReader: ApiService = Api.orkoApiService
-            val list: Call<NearByPlace> = apiReader.getNearByPlace(location,radius,types,name,key)
-            list.enqueue(object : Callback<NearByPlace?> {
-                override fun onResponse(
-                    call: Call<NearByPlace?>,
-                    response: Response<NearByPlace?>
-                ) {
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            nearByPlaceList.postValue(it)
-                            isUpdated.value = true
-                        }
+    fun placeList(
+        location: String,
+        radius: String,
+        // types: String,
+        name: String,
+        key: String
+    ): MutableLiveData<NearByPlace> {
+        val nearByPlaceList: MutableLiveData<NearByPlace> = MutableLiveData<NearByPlace>()
+        isUpdated.value = false
+        val apiReader: ApiService = Api.orkoApiService
+        val list: Call<NearByPlace> = apiReader.getNearByPlace(location, radius, /*types,*/ name, key)
+        list.enqueue(object : Callback<NearByPlace?> {
+            override fun onResponse(
+                call: Call<NearByPlace?>,
+                response: Response<NearByPlace?>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        nearByPlaceList.postValue(it)
+                        isUpdated.value = true
                     }
                 }
+            }
 
-                override fun onFailure(call: Call<NearByPlace?>, t: Throwable) {
-                    isUpdated.value = false
-                }
-            })
-            return nearByPlaceList
-        }
+            override fun onFailure(call: Call<NearByPlace?>, t: Throwable) {
+                isUpdated.value = false
+            }
+        })
+        return nearByPlaceList
+    }
+
 }

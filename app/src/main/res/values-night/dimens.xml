@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="small_text_1">8sp</dimen>
+  <dimen name="small_text_2">10sp</dimen>
+  <dimen name="medium_text_1">12sp</dimen>
+  <dimen name="medium_text_2">14sp</dimen>
+  <dimen name="medium_text_3">16sp</dimen>
+  <dimen name="big_text_1">18sp</dimen>
+  <dimen name="big_text_2">20sp</dimen>
+  <dimen name="big_text_3">22sp</dimen>
+  <dimen name="layout_margin_small_1">2dp</dimen>
+  <dimen name="layout_margin_small_2">4dp</dimen>
+  <dimen name="layout_margin_small_3">6dp</dimen>
+  <dimen name="layout_margin_small_4">8dp</dimen>
+  <dimen name="layout_margin_small_5">10dp</dimen>
+  <dimen name="layout_margin_small_6">12dp</dimen>
+  <dimen name="layout_margin_small_7">14dp</dimen>
+  <dimen name="layout_margin_small_8">16dp</dimen>
+  <dimen name="layout_margin_small_9">18dp</dimen>
+  <dimen name="layout_margin_medium_1">20dp</dimen>
+  <dimen name="layout_margin_medium_2">22dp</dimen>
+  <dimen name="layout_margin_medium_3">24dp</dimen>
+  <dimen name="layout_margin_medium_4">26dp</dimen>
+  <dimen name="layout_margin_medium_5">28dp</dimen>
+  <dimen name="layout_margin_big_1">60dp</dimen>
+  <dimen name="layout_margin_big_2">70dp</dimen>
+  <dimen name="layout_margin_big_3">80dp</dimen>
+  <dimen name="layout_margin_big_4">90dp</dimen>
+  <dimen name="layout_margin_big_5">100dp</dimen>
+  <dimen name="layout_margin_big_6">110dp</dimen>
+  <dimen name="layout_margin_big_7">120dp</dimen>
+</resources>

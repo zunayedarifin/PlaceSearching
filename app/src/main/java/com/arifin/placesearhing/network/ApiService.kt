@@ -10,11 +10,11 @@ import retrofit2.http.Query
 interface ApiService {
 
     @Headers("Accept: application/json")
-    @GET("nearbysearch/json?")
+    @GET("place/nearbysearch/json?")
     fun getNearByPlace(
         @Query("location") location: String?,
         @Query("radius") radius: String?,
-        @Query("types") types: String?,
+        // @Query("types") types: String?,
         @Query("name") name: String?,
         @Query("key") key: String?
     ): Call<NearByPlace>
