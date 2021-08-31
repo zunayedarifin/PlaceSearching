@@ -24,7 +24,7 @@ class SearchListAdapter(
      */
      var mContext: Context = applicationContext
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) { // view initialization
         val name: TextView = view.findViewById(R.id.tvName)
         val address: TextView = view.findViewById(R.id.tvAddress)
         val open: TextView = view.findViewById(R.id.tvOpen)
@@ -38,7 +38,7 @@ class SearchListAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
+        // setting value for each item
         viewHolder.name.text = dataSet[position].name
         viewHolder.address.text = dataSet[position].vicinity
         if(dataSet[position].opening_hours?.open_now == true){
@@ -50,7 +50,7 @@ class SearchListAdapter(
         }
 
 
-        viewHolder.itemView.setOnClickListener {
+        viewHolder.itemView.setOnClickListener {  // sending value to activity
             cellClickListener.onCellClickListener(dataSet[position])
         }
     }
