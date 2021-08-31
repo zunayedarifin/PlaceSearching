@@ -21,7 +21,7 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
     private lateinit var binding: ActivitySearchListBinding
     private val apiKey:String = BuildConfig.API_KEY
     private lateinit var list: ArrayList<Result>
-    private var isUpdated:Boolean =false
+    // private var isUpdated:Boolean =false
     private var searchListAdapter: SearchListAdapter? = null
     private val viewModel: NearByPlacesViewModel by viewModels()
     lateinit var location: String
@@ -46,7 +46,9 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
             }
         }
         viewModel.getIsUpdate().observe(this){
-            isUpdated=it
+            // isUpdated=it
+            if(it) binding.progressBar.visibility= View.GONE
+            else binding.progressBar.visibility= View.VISIBLE
         }
         binding.ivBack.setOnClickListener{
             onBackPressed()
