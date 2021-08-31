@@ -1,28 +1,43 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llRootView"
+    android:layout_margin="@dimen/layout_margin_small_6"
+    android:padding="@dimen/layout_margin_small_6"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:backgroundTint="@color/gray"
+    android:background="@drawable/body_white_round"
+    android:orientation="vertical">
 
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_gravity="center">
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/medium_text_1"
+        android:textStyle="bold"
+        tools:text="Zunayed Arifin"
+        />
 
-        <TextView
-            android:id="@+id/tvPatientName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            tools:text="Ramananda Sarkar" />
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_1"
+        tools:text="Dhaka Bangladesh"
+        />
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvOpen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text_1"
+        tools:text="Open"
+        />
 </LinearLayout>

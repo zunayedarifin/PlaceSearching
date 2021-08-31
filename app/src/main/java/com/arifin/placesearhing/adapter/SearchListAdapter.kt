@@ -1,5 +1,7 @@
 package com.arifin.placesearhing.adapter
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +11,10 @@ import com.arifin.placesearhing.R
 import com.arifin.placesearhing.`interface`.CellClickListener
 import com.arifin.placesearhing.model.nearbyplaces.Result
 
-
-class SearchListAdapter(private val dataSet: ArrayList<Result>,
-                        private val cellClickListener: CellClickListener
+class SearchListAdapter(
+    applicationContext: Context,
+    private val dataSet: ArrayList<Result>,
+    private val cellClickListener: CellClickListener
 ) :
     RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 
@@ -19,37 +22,40 @@ class SearchListAdapter(private val dataSet: ArrayList<Result>,
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
+     var mContext: Context = applicationContext
 
-        init {
-            // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.tvPatientName)
-        }
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView = view.findViewById(R.id.tvName)
+        val address: TextView = view.findViewById(R.id.tvAddress)
+        val open: TextView = view.findViewById(R.id.tvOpen)
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.search_list_adapter, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.textView.text = dataSet[position].name
+        viewHolder.name.text = dataSet[position].name
+        viewHolder.address.text = dataSet[position].vicinity
+        if(dataSet[position].opening_hours?.open_now == true){
+            viewHolder.open.text = mContext.getString(R.string.open)
+            with(viewHolder) { open.setTextColor(Color.GREEN) }
+        }else{
+            viewHolder.open.text = mContext.getString(R.string.closed)
+            with(viewHolder) { open.setTextColor(Color.RED) }
+        }
+
 
         viewHolder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(dataSet[position])
         }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
     override fun getItemCount() = dataSet.size
 
 }

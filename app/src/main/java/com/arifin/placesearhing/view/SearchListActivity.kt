@@ -3,19 +3,15 @@ package com.arifin.placesearhing.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arifin.placesearhing.BuildConfig
 import com.arifin.placesearhing.`interface`.CellClickListener
 import com.arifin.placesearhing.adapter.SearchListAdapter
 import com.arifin.placesearhing.databinding.ActivitySearchListBinding
-import com.arifin.placesearhing.model.nearbyplaces.NearByPlace
 import com.arifin.placesearhing.model.nearbyplaces.Result
 import com.arifin.placesearhing.viewModel.NearByPlacesViewModel
-import kotlin.math.log
 
 class SearchListActivity : AppCompatActivity(), CellClickListener {
     private lateinit var binding: ActivitySearchListBinding
@@ -58,7 +54,7 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
 
     private fun setValues(list: ArrayList<Result>) {
         binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(this)
-        searchListAdapter = SearchListAdapter(list,this)
+        searchListAdapter = SearchListAdapter(applicationContext,list,this)
         binding.searchResultRecyclerView.adapter = searchListAdapter
 
     }

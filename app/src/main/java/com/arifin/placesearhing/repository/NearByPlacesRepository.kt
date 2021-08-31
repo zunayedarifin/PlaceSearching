@@ -1,7 +1,6 @@
 package com.arifin.placesearhing.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.arifin.placesearhing.model.getaddress.GetAddress
 import com.arifin.placesearhing.model.nearbyplaces.NearByPlace
 import com.arifin.placesearhing.network.Api
 import com.arifin.placesearhing.network.ApiService
@@ -46,28 +45,4 @@ class NearByPlacesRepository {
         return nearByPlaceList
     }
 
-    fun getAddress(address: String, key: String): MutableLiveData<GetAddress> {
-        val addressMutable: MutableLiveData<GetAddress> = MutableLiveData<GetAddress>()
-        isUpdated.value = false
-        val apiReader: ApiService = Api.orkoApiService
-        val list: Call<GetAddress> = apiReader.getAddress(address, key)
-        list.enqueue(object : Callback<GetAddress?> {
-            override fun onResponse(
-                call: Call<GetAddress?>,
-                response: Response<GetAddress?>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        addressMutable.postValue(it)
-                        isUpdated.value = true
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<GetAddress?>, t: Throwable) {
-                isUpdated.value = false
-            }
-        })
-        return addressMutable
-    }
 }

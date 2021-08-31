@@ -2,7 +2,6 @@ package com.arifin.placesearhing.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.arifin.placesearhing.model.getaddress.GetAddress
 import com.arifin.placesearhing.model.nearbyplaces.NearByPlace
 import com.arifin.placesearhing.repository.NearByPlacesRepository
 
@@ -16,13 +15,6 @@ class NearByPlacesViewModel : ViewModel() {
         key: String
     ): MutableLiveData<NearByPlace> {
         return nearByPlacesRepository.placeList(location, radius, types, name, key)
-    }
-
-    fun getAddress(
-        address: String,
-        key: String
-    ): MutableLiveData<GetAddress> {
-        return nearByPlacesRepository.getAddress(address, key)
     }
 
     fun getIsUpdate(): MutableLiveData<Boolean> {

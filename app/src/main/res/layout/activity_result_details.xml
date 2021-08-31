@@ -12,14 +12,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainTop"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/layout_margin_big_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/mainBody"
         android:background="@color/primary_blue"
         android:orientation="horizontal"
-        android:padding="4dp">
+        android:padding="@dimen/layout_margin_small_2">
 
         <ImageView
             android:id="@+id/ivBack"
@@ -42,8 +42,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:textSize="18sp"
-            android:textColor="#FFFFFF"
+            android:textSize="@dimen/big_text_2"
+            android:textColor="@color/white"
             tools:text="@string/app_name"
             android:text="@string/app_name"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -53,7 +53,7 @@
         android:id="@+id/mainBody"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/layout_margin_big_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,78 +68,74 @@
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:padding="4dp"
-            android:text="Details"/>
+            android:textSize="@dimen/big_text_2"
+            android:padding="@dimen/layout_margin_small_2"
+            android:text="@string/details"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/layout_margin_medium_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_result"
             android:textAlignment="center"
-            android:textSize="16sp"
-            android:padding="4dp"
-            tools:text="Details"/>
+            android:textSize="@dimen/medium_text_3"
+            android:padding="@dimen/layout_margin_small_2"
+            tools:text="@string/details"/>
 
         <TextView
             android:id="@+id/type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/layout_margin_medium_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name"
             android:textAlignment="center"
-            android:textSize="16sp"
-            android:padding="4dp"
-            tools:text="Details"/>
+            android:textSize="@dimen/medium_text_3"
+            android:padding="@dimen/layout_margin_small_2"
+            tools:text="@string/details"/>
 
         <TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/layout_margin_medium_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/type"
             android:textAlignment="center"
-            android:textSize="16sp"
-            android:padding="4dp"
-            tools:text="Details"/>
+            android:textSize="@dimen/medium_text_3"
+            android:padding="@dimen/layout_margin_small_2"
+            tools:text="@string/details"/>
 
         <TextView
             android:id="@+id/ratings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/layout_margin_medium_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/status"
             android:textAlignment="center"
-            android:textSize="16sp"
-            android:padding="4dp"
-            tools:text="Details"/>
+            android:textSize="@dimen/medium_text_3"
+            android:padding="@dimen/layout_margin_small_2"
+            tools:text="@string/details"/>
 
         <TextView
             android:id="@+id/open"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/layout_margin_medium_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ratings"
             android:textAlignment="center"
-            android:textSize="16sp"
-            android:padding="4dp"
-            tools:text="Details"/>
-
-
-
-
+            android:textSize="@dimen/medium_text_3"
+            android:padding="@dimen/layout_margin_small_2"
+            tools:text="@string/details"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
