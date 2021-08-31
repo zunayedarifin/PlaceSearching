@@ -10,11 +10,11 @@ class NearByPlacesViewModel : ViewModel() {
     fun getNearByPlaces(
         location: String,
         radius: String,
-        types: String,
+        // types: String,
         name: String,
         key: String
     ): MutableLiveData<NearByPlace> {
-        return nearByPlacesRepository.placeList(location, radius, types, name, key)
+        return nearByPlacesRepository.placeList(location, radius, /*types,*/ name, key)
     }
 
     fun getIsUpdate(): MutableLiveData<Boolean> {

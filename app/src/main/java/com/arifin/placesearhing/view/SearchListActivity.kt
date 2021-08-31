@@ -35,7 +35,7 @@ class SearchListActivity : AppCompatActivity(), CellClickListener {
         types = intent.getStringExtra("types")!!
         name = intent.getStringExtra("name")!!
 
-        viewModel.getNearByPlaces(location,radius,types,name,apiKey).observe(this) { response ->
+        viewModel.getNearByPlaces(location,radius,/*types,*/name,apiKey).observe(this) { response ->
             if (response.status == "OK") {
                 list= response.results as ArrayList<Result>
                 setValues(list)

@@ -17,14 +17,14 @@ class NearByPlacesRepository {
     fun placeList(
         location: String,
         radius: String,
-        types: String,
+        // types: String,
         name: String,
         key: String
     ): MutableLiveData<NearByPlace> {
         val nearByPlaceList: MutableLiveData<NearByPlace> = MutableLiveData<NearByPlace>()
         isUpdated.value = false
         val apiReader: ApiService = Api.orkoApiService
-        val list: Call<NearByPlace> = apiReader.getNearByPlace(location, radius, types, name, key)
+        val list: Call<NearByPlace> = apiReader.getNearByPlace(location, radius, /*types,*/ name, key)
         list.enqueue(object : Callback<NearByPlace?> {
             override fun onResponse(
                 call: Call<NearByPlace?>,
